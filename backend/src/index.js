@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
 import usersRoute from './routes/users';
 import jokeRoute from './routes/jokes';
-import { JWT_SECRET } from './config';
 
+const cors = require('cors');
 const fastify = require('fastify')();
 
+fastify.use(cors());
 mongoose.connect('mongodb://mongodb/takemetour');
 
 // routes

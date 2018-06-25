@@ -1,0 +1,28 @@
+{
+  "scripts": {
+    "dev": "nodemon src/ --exec babel-node",
+    "build": "babel src -d build",
+    "start": "node build/"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-minify": "^0.4.3",
+    "babel-runtime": "^6.26.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.4",
+    "fastify": "^1.7.0",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.1.6"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "17.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1"
+  }
+}

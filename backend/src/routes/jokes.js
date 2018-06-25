@@ -33,8 +33,40 @@ export default (fastify, opt, next) => {
         }
     })
 
+    fastify.post('/:id/dislike', async (req, res) => {
+        try {
+            const token = req.headers.authorization.replace('Bearer ', '');
+            jwtVerify(token);
+            const data = await model.findOne({
+                _id: req.params.id,
+                listUser: req.body.userId
+
+            })
+            if (data == null) {
+                await model.updateOne({
+                    _id: req.params.id
+                }, {
+                    $inc: {
+                        dislike: 1
+                    },
+                    $push: {
+                        listUser: req.body.userId
+                    }
+                })
+                res.send('disliked!')
+            } else if (data != null) {
+                res.send('protecting spamming')
+            }
+        } catch (error) {
+            console.log(error)
+            res.send(error)
+        }
+    })
+
     fastify.post('/:id/like', async (req, res) => {
         try {
+            const token = req.headers.authorization.replace('Bearer ', '');
+            jwtVerify(token);
             const data = await model.findOne({
                 _id: req.params.id,
                 listUser: req.body.userId

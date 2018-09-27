@@ -1,27 +1,14 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import classNames from 'classnames'
-import PropTypes from 'prop-types'
-class JokesContainer extends Component {
-  static propTypes = {
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        categoryId: PropTypes.string.isRequired
-      }).isRequired
-    }).isRequired,
-    location: PropTypes.shape({
-      search: PropTypes.string.isRequired
-    }).isRequired
-  }
+import { Link } from 'react-router-dom'
+class SearchResult extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       value: [],
       pagination: {},
-      jokes: [],
-      searchFirstName: '',
-      searchLastName: ''
-    };
+      jokes: []
+    }
   }
   componentDidMount() {
     this.loadJokes()
@@ -30,7 +17,8 @@ class JokesContainer extends Component {
     const { match, location } = this.props
     const { match: prevMatch, location: prevLocation } = prevProps
     if (
-      (match.params.categoryId !== prevMatch.params.categoryId) ||
+      (match.params.firstName !== prevMatch.params.firstName) ||
+      (match.params.lastName !== prevMatch.params.lastName) ||
       (location.search !== prevLocation.search)
     ) {
       this.loadJokes()
@@ -38,9 +26,9 @@ class JokesContainer extends Component {
   }
   loadJokes() {
     const { location: { search }, match: { params } } = this.props
-    const { categoryId } = params
+    const { firstName, lastName } = params
     const page = new URLSearchParams(search).get('page') || 1
-    fetch(`/jokes?exclude=[${categoryId}]&page=${page}`)
+    fetch(`/jokes/?firstName=${firstName}&lastName=${lastName}&page=${page}`)
       .then(res => res.json())
       .then(({ value }) =>
         this.setState(
@@ -51,7 +39,6 @@ class JokesContainer extends Component {
           }
         ))
   }
-
   GetDataPaginate(sourceArray, page = 1, perPage = 25) {
     let jokes = sourceArray.slice((page - 1) * perPage, page * perPage)
     return {
@@ -67,14 +54,14 @@ class JokesContainer extends Component {
 
   render() {
     const { jokes, pagination: { page, totalPages } } = this.state
-    const { categoryId } = this.props.match.params
+    const { firstName, lastName } = this.props.match.params
     return (
       <div>
         <ul className='nav flex-column'>
           {jokes.map(({ id, joke }) => (
-            <Link key={id} to={`/jokes/${id}`} className='list-group-item'>
+            <li key={id} className='list-group-item'>
               {joke}
-            </Link>
+            </li>
           ))}
         </ul>
         <br />
@@ -88,7 +75,7 @@ class JokesContainer extends Component {
                     key={currentIndex}
                     className={classNames(['page-item', { active: currentIndex === +page }])}>
                     <Link
-                      to={`/categories/${categoryId}/jokes?page=${currentIndex}`}
+                      to={`/jokes/Search/firstName=${firstName}&lastName=${lastName}?page=${currentIndex}`}
                       className='page-link'>{currentIndex}</Link>
                   </li>
                 )
@@ -100,4 +87,4 @@ class JokesContainer extends Component {
     )
   }
 }
-export default JokesContainer
+export default SearchResult

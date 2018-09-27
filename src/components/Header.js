@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import logo from '../logo.svg'
 
-class FormComponent extends Component {
-  render () {
+const HeaderComponent = () => {
     return (
       <div>
         <table className='titleBar'>
@@ -20,7 +19,6 @@ class FormComponent extends Component {
         </table>
       </div>
     )
-  }
 }
 
-export default FormComponent
+export default HeaderComponent

@@ -1,13 +1,14 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { Categories, Jokes, NotFound } from './'
-import { Sidebar } from '../containers'
+import { Sidebar, Search } from '../containers'
 
 const Content = () => (
   <div>
     <div className='row'>
       <Sidebar />
       <div className='col-8'>
+        <Search />
         <Switch>
           <Route path='/categories' component={Categories} />
           <Route path='/jokes' component={Jokes} />

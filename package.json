@@ -7,8 +7,8 @@
     "bootstrap": "^4.1.3",
     "classnames": "^2.2.6",
     "prop-types": "^15.6.2",
-    "react": "^16.5.1",
-    "react-dom": "^16.5.1",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
     "reactstrap": "^6.4.0"
@@ -24,11 +24,12 @@
     "babel-eslint": "^7.2.3",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "eslint": "^4.1.1",
+    "eslint": "^4.19.1",
     "eslint-config-react-app": "^2.1.0",
-    "eslint-plugin-flowtype": "^2.34.1",
-    "eslint-plugin-import": "^2.6.0",
+    "eslint-plugin-flowtype": "^2.50.1",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.1.0"
-  }
+    "eslint-plugin-react": "^7.11.1"
+  },
+  "proxy": "http://api.icndb.com"
 }

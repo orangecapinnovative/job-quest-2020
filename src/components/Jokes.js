@@ -1,10 +1,13 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
-import { Joke } from '../containers'
+import { Route, Switch } from 'react-router-dom'
+import { Joke, SearchResults } from '../containers'
 
 const Jokes = () => (
   <div>
-    <Route path='/jokes/:id' component={Joke} />
+    <Switch>
+      <Route exact path='/jokes/:id' component={Joke} />
+      <Route path='/jokes/Search/firstName=:firstName&lastName=:lastName' component={SearchResults} />
+    </Switch>
   </div>
 )
 

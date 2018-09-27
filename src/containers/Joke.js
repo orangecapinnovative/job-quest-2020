@@ -29,7 +29,7 @@ class JokeContainer extends Component {
   loadJoke() {
     const { id } = this.props.match.params
 
-    fetch(`http://api.icndb.com/jokes/${id}`)
+    fetch(`/jokes/${id}`)
       .then(res => res.json())
       .then(({ value }) => this.setState({ ...value }))
   }
@@ -41,7 +41,6 @@ class JokeContainer extends Component {
     return (
       <div>
         <Card body outline color="primary">
-
           <CardTitle>Joke title id : {id}</CardTitle>
           <CardText>{joke}</CardText>
           <Button

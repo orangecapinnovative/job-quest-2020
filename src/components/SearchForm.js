@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Form, FormRow, FormColumn, Label } from '../theme/Form'
+import { RedButton } from '../theme/RedButton'
+import {  InputWithoutBorder } from '../theme/Input'
 
 class SearchForm extends Component {
     constructor(props) {
@@ -28,35 +31,37 @@ class SearchForm extends Component {
     render() {
         const { searchFirstName, searchLastName } = this.state
         return (
-            <div>
-                <form className="form-inline">
-                    <div className="form-group mb-2">
-                        <label htmlFor='searchFirstName'>First Name: </label>
-                        <input
-                            type='text'
-                            className='form-control'
-                            id='searchFirstName'
-                            name='searchFirstName'
-                            value={searchFirstName}
-                            onChange={this.onFieldChange}
-                            placeholder='Enter first name' />{' '}
-                    </div>
-                    <div className="form-group mx-sm-4  mb-2">
-                        <label htmlFor='searchLastName'>Last Name: </label>
-                        <input
-                            type='text'
-                            className='form-control'
-                            id='searchLastName'
-                            name='searchLastName'
-                            value={searchLastName}
-                            onChange={this.onFieldChange}
-                            placeholder='Enter last name' />{' '}
-                    </div>
-                    <button
-                        type="submit"
-                        className="btn btn-primary mb-1"
-                        onClick={this.onSubmit}> Search  </button>
-                </form>
+            <div >
+                <Form>
+                    <FormRow>
+                        <FormColumn >
+                            <Label htmlFor='searchFirstName' >First Name:</Label>
+                            <InputWithoutBorder
+                                type='text'
+                                className='form-control'
+                                id='searchFirstName'
+                                name='searchFirstName'
+                                value={searchFirstName}
+                                onChange={this.onFieldChange}
+                                placeholder='Enter first name' />{' '}
+                        </FormColumn>
+                        <FormColumn>
+                            <Label htmlFor='searchLastName'>Last Name: </Label>
+                            <InputWithoutBorder
+                                type='text'
+                                className='form-control'
+                                id='searchLastName'
+                                name='searchLastName'
+                                value={searchLastName}
+                                onChange={this.onFieldChange}
+                                placeholder='Enter last name' />{' '}
+                        </FormColumn>
+                        <FormColumn >
+                            <RedButton type="submit"
+                                onClick={this.onSubmit}>Search</RedButton>
+                        </FormColumn>
+                    </FormRow>
+                </Form>
                 <hr />
             </div >
         )

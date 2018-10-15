@@ -27,7 +27,7 @@ class SearchFormContainer extends Component {
             history.push('/')
         }
         else {
-            history.push(`/jokes/Search/firstName=${firstName}&lastName=${lastName}`)
+            history.push(`/search/?firstName=${firstName}&lastName=${lastName}`)
         }
     }
 

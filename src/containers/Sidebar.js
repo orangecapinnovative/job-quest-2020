@@ -1,39 +1,40 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
-import { Card, CardHeader, CardBody } from 'reactstrap'
+import { CardWrapper, CardHeader, CardHeading, CardBody, NavItem, NavLinkItem } from '../theme/CardWrapper'
 
 class SidebarContainer extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       value: []
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     fetch('/categories')
       .then(res => res.json())
       .then(({ value }) => this.setState({ value }))
   }
-  render () {
+  render() {
     return (
-      <div className='col-3'>
-        <Card>
-          <CardHeader style={{ textAlign: 'center' }}>Chuck Norris</CardHeader>
+      <div>
+        <CardWrapper>
+          <CardHeader>
+            <CardHeading>Chuck Norris</CardHeading>
+          </CardHeader>
           <CardBody>
-            <nav className='list-group' style={{ textAlign: 'center' }}>
+            <NavItem>
               {this.state.value.map((item, index) => (
-                <NavLink
+                <NavLinkItem
                   key={index}
-                  to={`/categories/${item}/jokes`}
-                  className='list-group-item'
-                  activeClassName='active'>
-                  {item}
-                </NavLink>
+                  to={`/categories/${item}/jokes`}>
+                  <li>
+                    {item}
+                  </li>
+                </NavLinkItem>
               ))}
-            </nav>
+            </NavItem>
           </CardBody>
-        </Card>
+        </CardWrapper>
       </div>
     )
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
+import { SearchResultsForm } from '../components'
 class JokesContainer extends Component {
   static propTypes = {
     match: PropTypes.shape({
@@ -18,9 +19,7 @@ class JokesContainer extends Component {
     this.state = {
       value: [],
       pagination: {},
-      jokes: [],
-      searchFirstName: '',
-      searchLastName: ''
+      jokes: []
     };
   }
   componentDidMount() {
@@ -52,7 +51,7 @@ class JokesContainer extends Component {
         ))
   }
 
-  GetDataPaginate(sourceArray, page = 1, perPage = 25) {
+  GetDataPaginate(sourceArray, page = 1, perPage = 30) {
     let jokes = sourceArray.slice((page - 1) * perPage, page * perPage)
     return {
       jokes,
@@ -66,17 +65,13 @@ class JokesContainer extends Component {
   }
 
   render() {
-    const { jokes, pagination: { page, totalPages } } = this.state
+    const {  pagination: { page, totalPages } } = this.state
     const { categoryId } = this.props.match.params
     return (
       <div>
-        <ul className='nav flex-column'>
-          {jokes.map(({ id, joke }) => (
-            <Link key={id} to={`/jokes/${id}`} className='list-group-item'>
-              {joke}
-            </Link>
-          ))}
-        </ul>
+          <SearchResultsForm 
+                 formType = 'Jokes'
+                  {...this.state} />
         <br />
         <nav>
           <ul className='pagination'>

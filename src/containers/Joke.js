@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { numericString } from 'airbnb-prop-types'
-import { Card, Button, CardTitle, CardText } from 'reactstrap';
+import { CardWrapper, CardHeader, CardHeading2, CardBody, NavItem, NavLinkItem } from '../theme/CardWrapper'
+
 
 class JokeContainer extends Component {
   static propTypes = {
@@ -40,13 +41,16 @@ class JokeContainer extends Component {
     const { id, joke } = this.state
     return (
       <div>
-        <Card body outline color="primary">
-          <CardTitle>Joke title id : {id}</CardTitle>
-          <CardText>{joke}</CardText>
-          <Button
-            color="primary"
-            onClick={this.backToPreviouUrl}>Back</Button>
-        </Card>
+        <CardWrapper>
+          <CardHeader>
+            <CardHeading2>Joke title id : {id}</CardHeading2>
+            <CardBody>
+              <NavItem>
+                  {joke}
+              </NavItem>
+            </CardBody>
+          </CardHeader>
+        </CardWrapper>
       </div>
     )
   }

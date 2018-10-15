@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
+import { SearchResultsForm } from '../components'
 class SearchResult extends Component {
   constructor(props) {
     super(props)
@@ -14,21 +15,18 @@ class SearchResult extends Component {
     this.loadJokes()
   }
   componentDidUpdate(prevProps) {
-    const { match, location } = this.props
-    const { match: prevMatch, location: prevLocation } = prevProps
-    if (
-      (match.params.firstName !== prevMatch.params.firstName) ||
-      (match.params.lastName !== prevMatch.params.lastName) ||
-      (location.search !== prevLocation.search)
-    ) {
+    const { location } = this.props
+    const { location: prevLocation } = prevProps
+    if ((location.search !== prevLocation.search)) {
       this.loadJokes()
     }
   }
   loadJokes() {
-    const { location: { search }, match: { params } } = this.props
-    const { firstName, lastName } = params
+    const { location: { search } } = this.props
+    const firstName = new URLSearchParams(search).get('firstName')
+    const lastName = new URLSearchParams(search).get('lastName')
     const page = new URLSearchParams(search).get('page') || 1
-    fetch(`/jokes/?firstName=${firstName}&lastName=${lastName}&page=${page}`)
+    fetch(`http://api.icndb.com/jokes/?firstName=${firstName}&lastName=${lastName}&page=${page}`)
       .then(res => res.json())
       .then(({ value }) =>
         this.setState(
@@ -39,7 +37,7 @@ class SearchResult extends Component {
           }
         ))
   }
-  GetDataPaginate(sourceArray, page = 1, perPage = 25) {
+  GetDataPaginate(sourceArray, page = 1, perPage = 30) {
     let jokes = sourceArray.slice((page - 1) * perPage, page * perPage)
     return {
       jokes,
@@ -48,22 +46,17 @@ class SearchResult extends Component {
         perPage: +perPage,
         totalPages: Math.ceil(sourceArray.length / perPage)
       }
-
     }
   }
 
   render() {
-    const { jokes, pagination: { page, totalPages } } = this.state
-    const { firstName, lastName } = this.props.match.params
+    const { pagination: { page, totalPages } } = this.state
+    const { location: { search } } = this.props
+    const firstName = new URLSearchParams(search).get('firstName')
+    const lastName = new URLSearchParams(search).get('lastName')
     return (
       <div>
-        <ul className='nav flex-column'>
-          {jokes.map(({ id, joke }) => (
-            <li key={id} className='list-group-item'>
-              {joke}
-            </li>
-          ))}
-        </ul>
+        <SearchResultsForm  formType='SearchResults' {...this.state} />
         <br />
         <nav>
           <ul className='pagination'>
@@ -75,7 +68,7 @@ class SearchResult extends Component {
                     key={currentIndex}
                     className={classNames(['page-item', { active: currentIndex === +page }])}>
                     <Link
-                      to={`/jokes/Search/firstName=${firstName}&lastName=${lastName}?page=${currentIndex}`}
+                      to={`/search?firstName=${firstName}&lastName=${lastName}&page=${currentIndex}`}
                       className='page-link'>{currentIndex}</Link>
                   </li>
                 )

@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
-import { Content, Header } from './'
-import '../App.css'
+import { ContentRoute, HeaderForm } from './'
+import { Container } from '../theme/grid'
+import ReallySmoothScroll from 'really-smooth-scroll'
+ReallySmoothScroll.shim();
 class App extends Component {
   render() {
     return (
       <div>
-        <Header />
-        <div className='container'>
-          <Route component={Content} />
-        </div>
+        <HeaderForm />
+        <Container>
+          <ContentRoute />
+        </Container>
       </div>
 
     )

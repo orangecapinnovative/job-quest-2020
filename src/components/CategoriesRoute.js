@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import { Jokes } from '../containers'
 
-const Categories = () => (
+const CategoriesRoute = () => (
   <div>
     <div>
       <Route path='/categories/:categoryId/jokes'
@@ -11,4 +11,4 @@ const Categories = () => (
   </div>
 )
 
-export default Categories
+export default CategoriesRoute

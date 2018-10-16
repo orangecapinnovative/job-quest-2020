@@ -8,34 +8,30 @@ const SearchResultsForm = ({ jokes, formType }) => (
                 <NavList>
                     {
                         jokes.map(({ id, joke }) => (
-                                <NavItem key={id} >
-                                    {joke}
-                                </NavItem>
-                            )
+                            <NavItem key={id} >
+                                {joke}
+                            </NavItem>
+                        )
                         )
                     }
                 </NavList>
-            :
-            <NavList>
-                {
-                    jokes.map(({ id, joke }) => (
-                        <NavLinkItem key={id}
-                            to={`/jokes/${id}`} >
-                            {joke}
-                        </NavLinkItem>
+                :
+                <NavList>
+                    {
+                        jokes.map(({ id, joke }) => (
+                            <NavLinkItem key={id}
+                                to={`/jokes/${id}`} >
+                                {joke}
+                            </NavLinkItem>
                         )
-                    )
-                }
-            </NavList>
+                        )
+                    }
+                </NavList>
 
         }
     </div>
-    
-
-  
 )
-
-//Default value 
+// //Default value 
 SearchResultsForm.defaultProps = {
     jokes: [],
     formType: 'SearchResults'
@@ -44,12 +40,12 @@ SearchResultsForm.defaultProps = {
 // Validate value 
 SearchResultsForm.propTypes = {
     jokes: PropTypes.arrayOf(
-        PropTypes.shape({ 
+        PropTypes.shape({
             id: PropTypes.number.isRequired,
             joke: PropTypes.string.isRequired
         })
     ),
     formType: PropTypes.string
-    
+
 }
 export default SearchResultsForm;

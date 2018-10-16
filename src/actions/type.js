@@ -1,0 +1,3 @@
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
+export const SEARCH_JOKES = 'SEARCH_JOKES'
+export const SEARCH_JOKE = 'SEARCH_JOKE'

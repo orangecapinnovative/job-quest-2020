@@ -1,11 +1,39 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { numericString } from 'airbnb-prop-types'
-import { CardWrapper, CardHeader, CardHeading2, CardBody, NavItem, NavLinkItem } from '../theme/CardWrapper'
+import { RedButton } from '../theme/RedButton'
+import { CardWrapper, CardHeader, CardHeading2, CardBody, NavItem } from '../theme/CardWrapper'
+import {
+  withState,
+  withHandlers,
+  lifecycle,
+  withProps,
+  setPropTypes,
+  compose
+} from 'recompose'
+const JokeContainer = ({
+  id,
+  value: { joke },
+  backToPreviouUrl
+}) => (
+    <div>
+      <CardWrapper>
+        <CardHeader>
+          <CardHeading2>Joke title id : {id}</CardHeading2>
+          <CardBody>
+            <NavItem>
+              {joke}
+            </NavItem>
+          </CardBody>
+        </CardHeader>
+      </CardWrapper>
+      <RedButton type="submit"
+        onClick={backToPreviouUrl}>Back</RedButton>
+    </div>
+  )
 
-
-class JokeContainer extends Component {
-  static propTypes = {
+export default compose(
+  setPropTypes({
     match: PropTypes.shape({
       params: PropTypes.shape({
         id: numericString().isRequired
@@ -14,46 +42,24 @@ class JokeContainer extends Component {
     history: PropTypes.shape({
       goBack: PropTypes.func.isRequired
     }).isRequired
-  }
+  }),
+  withState('value', 'setJoke', { joke: '' }),
+  withProps(props => ({ id: props.match.params.id })),
+  withHandlers({
+    loadJoke: ({ id, setJoke }) => _ => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: '',
-      joke: ''
-    };
-  }
-  componentDidMount() {
-    this.loadJoke()
-  }
+      fetch(`/jokes/${id}`)
+        .then(res => res.json())
+        .then(({ value }) => setJoke(value))
+    },
+    backToPreviouUrl: ({ history: { goBack } }) => _ => {
+      goBack()
+    }
+  }),
+  lifecycle({
+    componentDidMount() {
+      this.props.loadJoke()
+    }
+  })
+)(JokeContainer)
 
-  loadJoke() {
-    const { id } = this.props.match.params
-
-    fetch(`/jokes/${id}`)
-      .then(res => res.json())
-      .then(({ value }) => this.setState({ ...value }))
-  }
-  backToPreviouUrl = () => {
-    this.props.history.goBack()
-  }
-  render() {
-    const { id, joke } = this.state
-    return (
-      <div>
-        <CardWrapper>
-          <CardHeader>
-            <CardHeading2>Joke title id : {id}</CardHeading2>
-            <CardBody>
-              <NavItem>
-                  {joke}
-              </NavItem>
-            </CardBody>
-          </CardHeader>
-        </CardWrapper>
-      </div>
-    )
-  }
-}
-
-export default JokeContainer

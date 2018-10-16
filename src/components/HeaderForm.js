@@ -1,5 +1,8 @@
 import React from 'react'
 import logo from '../logo.svg'
+import {
+  compose
+} from 'recompose'
 import styled from 'styled-components'
 
 const Outer = styled.div`
@@ -33,4 +36,6 @@ const HeaderForm = () => {
   )
 }
 
-export default HeaderForm
+export default compose(
+
+) (HeaderForm)

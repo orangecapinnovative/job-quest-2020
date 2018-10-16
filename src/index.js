@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { App } from './components'
+import { App } from './containers'
 import registerServiceWorker from './registerServiceWorker'
 import { BrowserRouter as Router } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'

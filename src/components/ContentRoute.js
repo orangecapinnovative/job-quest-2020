@@ -2,27 +2,20 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { CategoriesRoute, JokesRoute, NotFoundForm, SearchRoute } from '.'
 import { Sidebar, Search } from '../containers'
+import PropTypes from 'prop-types'
+import {
+  getContext,
+  compose
+} from 'recompose'
 import { Row, Column } from '../theme/Table'
-const ContentRoute = () => (
+const ContentRoute = ({ store }) => (
   <div>
     <Row>
-      <Column span='3'>1</Column>
-      <Column span="1">4</Column>
-      <Column span="1">5</Column>
-      <Column span="1">6</Column>
-      <Column span="1">7</Column>
-      <Column span="1">8</Column>
-      <Column span="1">9</Column>
-      <Column span="1">10</Column>
-      <Column span="1">11</Column>
-      <Column span="1">12</Column>
-    </Row>
-    <Row>
       <Column span='3'>
-        <Sidebar />
+        <Sidebar  />
       </Column>
       <Column span='1'>
-      &nbsp;
+        &nbsp;
       </Column>
       <Column span="8">
         <Search />
@@ -35,6 +28,9 @@ const ContentRoute = () => (
       </Column>
     </Row>
   </div>
-
 )
-export default ContentRoute
+export default compose(
+  getContext({
+    store: PropTypes.object
+  })
+)(ContentRoute)

@@ -5,44 +5,51 @@ const db = require('../db/mongoose')
 const router = express.Router()
 
 //Get all jokes
-router.get('/', (request, response) => {
-    let id = request.query.id
-    if (id) {
-        Joke.find({ _id: id }, (error, jokes) => {
-            if (error) {
-                return response.json({
-                    status: 'Not Found',
-                    error: error
-                })
-            } else {
-                return response.json(jokes)
-            }
-        })
-    } else {
-        Joke.find({}, (error, jokes) => {
-            return response.json(jokes)
+router.get('/', async (request, response) => {
+    try {
+        let allJoke = await Joke.find({})
+        return response.json(allJoke)
+    } catch(error) {
+        return response.json({
+            status: 'Error',
+            Error: error.toString()
         })
     }
 })
 
 
 //Add joke from request body
-router.post('/', (request, response) => {
+router.post('/', async (request, response) => {
     let newJoke = new Joke({
         joke: request.body.joke
     })
-    newJoke.save()
-        .then((resolve) => {
+
+    try {
+        const savedJoke = await newJoke.save()
         return response.json({
             status: 'OK',
-            joke: newJoke
+            joke: savedJoke
         })
-    }).catch((reject) => {
+    } catch(error) {
         return response.json({
             status: 'Error',
-            error: reject.error
+            error: error.toString()
         })
-    })
+    }
+})
+
+//Get specific joke from ID
+router.get('/:id', async (request, response) => {
+    const id = request.params.id
+    try {
+        let joke = await Joke.find({ _id: id })
+        return response.json(joke)
+    } catch(error) {
+        return response.json({
+            status: 'Error',
+            Error: error.toString()
+        })
+    }
 })
 
 

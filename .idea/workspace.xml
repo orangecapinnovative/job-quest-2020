@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="95195efb-e6f5-4caa-b4f0-b469e92f0084" name="Default Changelist" comment="" />
+    <list default="true" id="95195efb-e6f5-4caa-b4f0-b469e92f0084" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -24,25 +27,27 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="js" value="13" />
-          <entry key="json" value="2" />
+          <entry key="json" value="3" />
+          <entry key="md" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JSON" value="2" />
+          <entry key="JSON" value="3" />
           <entry key="JavaScript" value="13" />
+          <entry key="Markdown" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="2741" />
-          <entry key="txt" value="73" />
+          <entry key="js" value="3301" />
+          <entry key="txt" value="85" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="2741" />
-          <entry key="PLAIN_TEXT" value="73" />
+          <entry key="JavaScript" value="3301" />
+          <entry key="PLAIN_TEXT" value="85" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -72,8 +77,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            <state relative-caret-position="513">
+              <caret line="59" column="40" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -228,7 +233,7 @@
       <option name="presentableId" value="Default" />
       <updated>1541839213249</updated>
       <workItem from="1541839216031" duration="1367000" />
-      <workItem from="1541841863861" duration="5846000" />
+      <workItem from="1541841863861" duration="7359000" />
     </task>
     <task id="LOCAL-00001" summary="Can get all jokes, get joke with specific Id, and post joke">
       <created>1541868661372</created>
@@ -237,11 +242,18 @@
       <option name="project" value="LOCAL" />
       <updated>1541868661372</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Updated path">
+      <created>1541869891571</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1541869891571</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7213000" />
+    <option name="totallyTimeSpent" value="8726000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="823" extended-state="0" />
@@ -293,7 +305,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Can get all jokes, get joke with specific Id, and post joke" />
-    <option name="LAST_COMMIT_MESSAGE" value="Can get all jokes, get joke with specific Id, and post joke" />
+    <MESSAGE value="Updated path" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated path" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app.js">
@@ -305,9 +318,6 @@
           <caret line="285" column="2" selection-start-line="285" selection-start-column="2" selection-end-line="285" selection-end-column="2" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/db/mongoose.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -358,10 +368,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state relative-caret-position="513">
+          <caret line="59" column="40" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
         </state>
       </provider>
     </entry>

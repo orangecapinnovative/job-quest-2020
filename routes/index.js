@@ -52,5 +52,18 @@ router.get('/:id', async (request, response) => {
     }
 })
 
+//Delete joke from ID
+router.delete('/:id', async (request, response) => {
+    const id = request.params.id
+    try {
+        let deletedJoke = await Joke.deleteOne({ _id: id })
+        return response.json(deletedJoke)
+    } catch(error) {
+        return response.json({
+            status: 'Error',
+            Error: error.toString()
+        })
+    }
+})
 
 module.exports = router

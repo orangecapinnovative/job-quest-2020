@@ -1,5 +1,5 @@
 const express = require('express')
-const Joke = require('../models/joke')
+const Joke = require('../models/Joke')
 const db = require('../db/mongoose')
 
 const router = express.Router()
@@ -12,11 +12,10 @@ router.get('/', async (request, response) => {
     } catch(error) {
         return response.json({
             status: 'Error',
-            Error: error.toString()
+            error: error.toString()
         })
     }
 })
-
 
 //Add joke from request body
 router.post('/', async (request, response) => {
@@ -47,7 +46,7 @@ router.get('/:id', async (request, response) => {
     } catch(error) {
         return response.json({
             status: 'Error',
-            Error: error.toString()
+            error: error.toString()
         })
     }
 })
@@ -61,7 +60,29 @@ router.delete('/:id', async (request, response) => {
     } catch(error) {
         return response.json({
             status: 'Error',
-            Error: error.toString()
+            error: error.toString()
+        })
+    }
+})
+
+router.post('/:id/like', async (request, response) => {
+    const id = request.params.id
+    const ip = request.ip
+    try {
+        const joke = await Joke.findOne({ _id: id})
+        if (joke.like.includes(ip)) {
+            return response.send('You have already liked to joke!!')
+        }
+
+        joke.like.push(ip)
+        await joke.save()
+        return response.json({
+            status: 'OK',
+            joke: joke
+        })
+    } catch(err) {
+        return response.json({
+            error: err.toString()
         })
     }
 })

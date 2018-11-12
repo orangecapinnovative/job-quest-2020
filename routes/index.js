@@ -65,6 +65,7 @@ router.delete('/:id', async (request, response) => {
     }
 })
 
+//Like joke
 router.post('/:id/like', async (request, response) => {
     const id = request.params.id
     const ip = request.ip
@@ -74,17 +75,41 @@ router.post('/:id/like', async (request, response) => {
             return response.send('You have already liked to joke!!')
         }
 
+        joke.dislike = joke.dislike.filter( dislikeIp => dislikeIp != ip)
         joke.like.push(ip)
         await joke.save()
         return response.json({
             status: 'OK',
             joke: joke
         })
-    } catch(err) {
+    } catch(error) {
         return response.json({
             error: err.toString()
         })
     }
 })
 
+//Dislike joke
+router.post('/:id/dislike', async (request, response) => {
+    const id = request.params.id
+    const ip = request.ip
+    try {
+        const joke = await Joke.findOne({ _id: id})
+        if (joke.dislike.includes(ip)) {
+            return response.send('You have already disliked to joke!!')
+        }
+
+        joke.like = joke.like.filter( likeIp => likeIp != ip)
+        joke.dislike.push(ip)
+        await joke.save()
+        return response.json({
+            status: 'OK',
+            joke: joke
+        })
+    } catch(error) {
+        return response.json({
+            error: err.toString()
+        })
+    }
+})
 module.exports = router

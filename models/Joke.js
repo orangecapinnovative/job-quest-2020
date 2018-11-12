@@ -11,8 +11,7 @@ const Joke = new Schema({
     },
     dislike: {
         type: [String]
-    },
-
+    }
 })
 
 module.exports = mongoose.model('Joke', Joke)

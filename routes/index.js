@@ -1,115 +1,101 @@
 const express = require('express')
 const Joke = require('../models/Joke')
-const db = require('../db/mongoose')
 
 const router = express.Router()
 
 //Get all jokes
-router.get('/', async (request, response) => {
+router.get('/', async (request, response, next) => {
     try {
         let allJoke = await Joke.find({})
-        return response.json(allJoke)
+        response.json(allJoke)
     } catch(error) {
-        return response.json({
-            status: 'Error',
-            error: error.toString()
-        })
+        next(error)
     }
 })
 
 //Add joke from request body
-router.post('/', async (request, response) => {
+router.post('/', async (request, response, next) => {
     let newJoke = new Joke({
         joke: request.body.joke
     })
 
     try {
         const savedJoke = await newJoke.save()
-        return response.json({
+        response.json({
             status: 'OK',
             joke: savedJoke
         })
     } catch(error) {
-        return response.json({
-            status: 'Error',
-            error: error.toString()
-        })
+        next(error)
     }
 })
 
 //Get specific joke from ID
-router.get('/:id', async (request, response) => {
+router.get('/:id', async (request, response, next) => {
     const id = request.params.id
     try {
         let joke = await Joke.find({ _id: id })
-        return response.json(joke)
+        response.json(joke)
     } catch(error) {
-        return response.json({
-            status: 'Error',
-            error: error.toString()
-        })
+        next(error)
     }
 })
 
 //Delete joke from ID
-router.delete('/:id', async (request, response) => {
+router.delete('/:id', async (request, response, next) => {
     const id = request.params.id
     try {
         let deletedJoke = await Joke.deleteOne({ _id: id })
-        return response.json(deletedJoke)
+        response.json(deletedJoke)
     } catch(error) {
-        return response.json({
-            status: 'Error',
-            error: error.toString()
-        })
+        next(error)
     }
 })
 
 //Like joke
-router.post('/:id/like', async (request, response) => {
+router.post('/:id/like', async (request, response, next) => {
     const id = request.params.id
     const ip = request.ip
     try {
         const joke = await Joke.findOne({ _id: id})
         if (joke.like.includes(ip)) {
-            return response.send('You have already liked to joke!!')
+            response.send('You have already liked to joke!!')
+            return
         }
 
-        joke.dislike = joke.dislike.filter( dislikeIp => dislikeIp != ip)
+        joke.dislike = joke.dislike.filter( dislikeIp => dislikeIp !== ip)
         joke.like.push(ip)
         await joke.save()
-        return response.json({
+        response.json({
             status: 'OK',
             joke: joke
         })
     } catch(error) {
-        return response.json({
-            error: err.toString()
-        })
+        next(error)
     }
 })
 
 //Dislike joke
-router.post('/:id/dislike', async (request, response) => {
+router.post('/:id/dislike', async (request, response, next) => {
     const id = request.params.id
     const ip = request.ip
     try {
         const joke = await Joke.findOne({ _id: id})
         if (joke.dislike.includes(ip)) {
-            return response.send('You have already disliked to joke!!')
+            response.send('You have already disliked to joke!!')
+            return
         }
 
-        joke.like = joke.like.filter( likeIp => likeIp != ip)
+        joke.like = joke.like.filter( likeIp => likeIp !== ip)
         joke.dislike.push(ip)
         await joke.save()
-        return response.json({
+        response.json({
             status: 'OK',
             joke: joke
         })
     } catch(error) {
-        return response.json({
-            error: err.toString()
-        })
+        next(error)
     }
 })
+
 module.exports = router

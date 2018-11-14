@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/takemetour/job-quest-2018#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongoose": "^5.3.11"
   },

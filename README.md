@@ -1,4 +1,4 @@
-# TakeMeTour's Job Quest ~~2018~~ 2020 Edition
+# TakeMeTour's Job Quest 2020 Edition
 
 Thank you for your interest in working at TakeMeTour. First, we would like to take a simple test on your coding skill.
 
@@ -99,15 +99,9 @@ FizzBuzz
 
 ## Front-End
 
-You are going to make a web application written with **React** which allow users to get some joke from **Chuck Norris**.
+You are going to make a web application written with **React** which allow users to get some joke from **Chuck Norris**. His joke look like this.
 
 > Chuck Norris once ordered a Big Mac at Burger King, and got one.
-
-In case you don't know who the heck is Chuck Norris. See his statement.
-
-![](https://blazepress.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_620/MTI4OTk1Mjg4MDE3OTEzODY2/18.webp)
-
-(Sorry. Please just google it)
 
 ### Features
 - Users can get a joke from [Chuck Norris API](http://www.icndb.com/api/)

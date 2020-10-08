@@ -30,14 +30,14 @@ In mathematics, the Fibonacci numbers are the numbers in the following integer s
 **Example**
 
 ```javascript
-> fib(1)
-1
+> fib(1) =(n-1) + fib(n-2)
+return fib;
 
-> fib(3)
-2
+> fib(3) =(n-1) + fib(n-2)
+return fib;
 
-> fib(12)
-144
+> fib(12)=(n-1) + fib(n-2)
+return fib;
 ```
 
 2. **Array shift**: Write a function `shift` that shifts the elements of array to left or right by n elements in an infinite loop.
@@ -87,14 +87,24 @@ Error!
 **Example**
 
 ```javascript
-> fizzBuzz(21)
-Fizz
+fizzBuzz= 21,25,45;
+switch(fizzBuzz) {
+  case 0
+   (fizzBuzz%3 ===0)
+  > echo ("fizz");
+    break;
+  case 1
+   (fizzBuzz%5 ===0)
+  > echo ("Buzz");
+    break;
+  case 2
+  (fizzBuzz%3 ===0 && fizzBuzz%5 ===0)
+  > echo ("fizzBuzz");
+    break;
+  default:
+    echo ("Error");
+}
 
-> fizzBuzz(25)
-Buzz
-
-> fizzBuzz(45)
-FizzBuzz
 ```
 
 ## Front-End

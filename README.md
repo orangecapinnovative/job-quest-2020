@@ -48,10 +48,10 @@ The function receives 3 parameters, 1st is an array, 2nd is the direction ('left
 
 ```javascript
 > shift(['john', 'jane', 'sarah', 'alex'], 'left', 2)
-['sarah', 'alex', 'john', 'jane']
+    console.log(2,3,0,1);
 
 > shift([1, 2, 3, 4 ,5], 'right', 3)
-[3, 4, 5, 1, 2]
+    console.log(3,4,5,1,2);
 ```
 
 3. **Second max**: Write a function `secondMax` that receive an array of number. The function will return the second maximum value of the array. If there is no second max, return max instead. If an array is empty, throw and error.
@@ -60,13 +60,13 @@ The function receives 3 parameters, 1st is an array, 2nd is the direction ('left
 
 ```javascript
 > secondMax([2, 3, 4, 5])
-4
+console.log(2);
 
 > secondMax([9, 2, 21, 21])
-9
+console.log(0);
 
 > secondMax([4, 4, 4, 4])
-4
+console.log(0);
 
 > secondMax([4123])
 4123

@@ -30,6 +30,15 @@ In mathematics, the Fibonacci numbers are the numbers in the following integer s
 **Example**
 
 ```javascript
+> fib(1)
+1
+
+> fib(3)
+2
+
+> fib(12)
+144
+
 > fib(1) =(n-1) + fib(n-2)
 return fib;
 
@@ -47,11 +56,27 @@ The function receives 3 parameters, 1st is an array, 2nd is the direction ('left
 **Example**
 
 ```javascript
+
 > shift(['john', 'jane', 'sarah', 'alex'], 'left', 2)
-    console.log(2,3,0,1);
+    (2,3,0,1);
 
 > shift([1, 2, 3, 4 ,5], 'right', 3)
-    console.log(3,4,5,1,2);
+    (3,4,5,1,2);
+    
+  function shift(){
+    let n = []
+      if(n ==='left'){
+      }
+      else if(n ==='right'){
+      }
+      else{
+        return n
+      }
+      for (let i = 0; i < n; i++) {
+      }
+        return n;
+}
+    
 ```
 
 3. **Second max**: Write a function `secondMax` that receive an array of number. The function will return the second maximum value of the array. If there is no second max, return max instead. If an array is empty, throw and error.
@@ -60,13 +85,13 @@ The function receives 3 parameters, 1st is an array, 2nd is the direction ('left
 
 ```javascript
 > secondMax([2, 3, 4, 5])
-console.log(2);
+4
 
 > secondMax([9, 2, 21, 21])
-console.log(0);
+9
 
 > secondMax([4, 4, 4, 4])
-console.log(0);
+4
 
 > secondMax([4123])
 4123
@@ -97,12 +122,9 @@ switch(fizzBuzz) {
    (fizzBuzz%5 ===0)
   > echo ("Buzz");
     break;
-  case 2
-  (fizzBuzz%3 ===0 && fizzBuzz%5 ===0)
-  > echo ("fizzBuzz");
-    break;
   default:
-    echo ("Error");
+     (fizzBuzz%3 ===0 && fizzBuzz%5 ===0)
+  > echo ("fizzBuzz");
 }
 
 ```

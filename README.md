@@ -39,11 +39,9 @@ In mathematics, the Fibonacci numbers are the numbers in the following integer s
 > fib(12)
 144
 
-> fib(1) =(n-1) + fib(n-2)
-return fib;
+> if fib(1) =(n-1) + fib(n-2)
 
 > fib(3) =(n-1) + fib(n-2)
-return fib;
 
 > fib(12)=(n-1) + fib(n-2)
 return fib;
@@ -98,6 +96,20 @@ The function receives 3 parameters, 1st is an array, 2nd is the direction ('left
 
 > secondMax([])
 Error!
+
+for (int i = 0; i < array.length; i++) 
+    {
+        if (array[i] > hight2) 
+        {
+            hight2 = array[i];
+        } 
+        else if (array[i] > second)
+            {
+            second = array[i];
+            }
+        else 
+    }
+    echo(" hight2 "+second );
 ```
 
 4. **FizzBuzz...But**: You may heard `FizzBuzz` task. Here we have the same rule. You will write a function `fizzBuzz` that receive a single parameter it will return the value base on these rule.

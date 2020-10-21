@@ -56,10 +56,10 @@ The function receives 3 parameters, 1st is an array, 2nd is the direction ('left
 ```javascript
 
 > shift(['john', 'jane', 'sarah', 'alex'], 'left', 2)
-    (2,3,0,1);
+['sarah', 'alex', 'john', 'jane']
 
 > shift([1, 2, 3, 4 ,5], 'right', 3)
-    (3,4,5,1,2);
+[3, 4, 5, 1, 2]
     
   function shift(){
     let n = []

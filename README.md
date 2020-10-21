@@ -124,6 +124,15 @@ for (int i = 0; i < array.length; i++)
 **Example**
 
 ```javascript
+> fizzBuzz(21)
+Fizz
+
+> fizzBuzz(25)
+Buzz
+
+> fizzBuzz(45)
+FizzBuzz
+
 fizzBuzz= 21,25,45;
 switch(fizzBuzz) {
   case 0

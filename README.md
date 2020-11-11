@@ -99,44 +99,162 @@ FizzBuzz
 
 ## Front-End
 
+### Coding Task
 You are going to make a web application written with **React** which allow users to get some joke from **Chuck Norris**. His joke look like this.
 
 > Chuck Norris once ordered a Big Mac at Burger King, and got one.
 
-### Features
+#### Features
 - Users can get a joke from [Chuck Norris API](http://www.icndb.com/api/)
 - Users has options to change number of result jokes, user's first name and last name
 - How to display the result is up to you.
 
-### Technical description
+#### Technical description
 - Using data from [REST API](http://www.icndb.com/api/)
 - Using React to build the apps. (Create React Apps / Pure Webpack setup / Next.js is fine to me)
 - We allows you to use any CSS framework. (Or you don't want to use that, also OK to me)
 
-### Bonus
+#### Bonus
 - You can surprise me with any extra features from my requirement. Use your imagination!
 
-### Front-end Questions
+### Front-end Architecture Design Task
 
-1. Explain the what's similar & difference between `cookie` / `localStorage` / `sessionStorage`.
+[Thai Version]
 
-2. Today React have hooks. Do we still need a class component? If your answer is yes then which case that we still need to use class component.
+เนื่องจาก CTO ของ Orange Cap Innovative ชอบวิ่งมาก (แบบมากๆ) ทีมเราเลยตัดสินใจจัดงานแข่งวิ่ง Marathon ในชื่อ "Orange Cap Marathon 2021" งานของคุณคือต้องออกแบบ Architecture สำหรับเว็บไซต์ในส่วนของ Front-end ที่พัฒนาด้วย React โดยระบบที่ได้รับมอบหมายจะเป็นในส่วนของการลงทะเบียนนักวิ่งที่จะเข้ามาสมัครวิ่งในงาน
 
-3. Breifly describe how *Virtual DOM* works.
+**Requirements และรายละเอียดของระบบ**
+- งานวิ่งนี้มีแค่ระยะเดียวเท่านั้น
+- การสมัครงานวิ่งนี้สมัครได้แค่ทีละคน ไม่มีการสมัครเป็นกลุ่มหลายคนให้
+- ระบบต้องสามารถจัดเก็บข้อมูลทั้งหมดเหล่านี้ได้ครบถ้วนดังต่อไปนี้
+  - ข้อมูลส่วนตัว
+    - คำนำหน้าชื่อ
+    - ชื่อ (ภาษาไทย และอังกฤษ)
+    - นามสกุล (ภาษาไทย และอังกฤษ)
+    - วันเดือนปีเกิด
+    - อีเมล
+    - เลขบัตรประจำตัวประชาชน
+    - ที่อยู่
+    - เบอร์โทรศัพท์
+    - รูปถ่ายหน้าตรง
+      - ความละเอียดขั้นต่ำ 300x300 pixel บังคับเป็น Square Resolution
+    - ชื่อบนเบอร์วิ่ง (BIB)
+      - กำหนดให้กรอกได้สูงสุด 10 ตัวอักษร ภาษาอังกฤษตัวพิมพ์ใหญ่ และตัวเลขเท่านั้น
+  - ข้อมูลเกี่ยวกับการวิ่ง
+    - เคยลงงานแข่ง Mini Marathon / Half Marathon / Full Marathon มาก่อนหรือไม่
+    - เวลาที่คาดว่าจะจบในการวิ่งครั้งนี้ (ชั่วโมงและนาที)
+  - ผู้ติดต่อฉุกเฉิน
+    - ผู้ติดต่อฉุกเฉินคนที่ 1
+      - ชื่อ-นามสกุล
+      - ความสัมพันธ์
+      - เบอร์โทรศัพท์
+    - ผู้ติดต่อฉุกเฉินคนที่ 2
+      - ชื่อ-นามสกุล
+      - ความสัมพันธ์
+      - เบอร์โทรศัพท์
+  - ข้อมูลทางการแพทย์
+    - หมู่เลือด
+      - A / B / O / AB
+    - ท่านมีอาการแพ้ยาหรือสารต่างๆ หรือไม่
+      - หากตอบว่ามี ให้ระบุ
+    - ท่านมีโรคประจำตัว หรือไม่ 
+      - หากตอบว่ามี ให้ระบุ
+    - ท่านมีประวัติการผ่าตัด มาก่อนหรือไม่
+      - หากตอบว่ามี ให้ระบุตำแหน่งและปีที่รับการผ่าตัด
+    - ท่านมีแพลนที่จะมีบุตร หรือ กำลังตั้งครรภ์ก่อนถึงช่วงการแข่งขันหรือไม่
+    - ท่านมียาที่ต้องทานเป็นประจำหรือไม่
+      - หากตอบว่ามี ให้ระบุ
+    - ท่านเคยบาดเจ็บ/ เจ็บป่วย จากการเข้าร่วมงานวิ่ง ที่ต้องไปรักษาต่อที่โรงพยาบาลหรือไม่
+    - ท่านออกกำลังกายสม่ำเสมอหรือไม่ (อย่างน้อย 1-2 ครั้ง ต่อสัปดาห์)
+    - ท่านเคยมีอาการเจ็บแน่นหน้าอก ใจสั่น เหนื่อยง่ายผิดปกติ หน้ามืด ขณะออกกำลังกายหรือไม่?
+  - เสื้อของที่ระลึก
+    - ไซส์เสื้อ
+      - XS / S / M / L / XL / XXL / XXXL
+- ต้องมีการแบ่งฟอร์มเป็น Step ตามหัวข้อ เนื่องจากฟอร์มใหญ่มาก User ไม่สามารถกรอกครบตามกำหนดได้ในครั้งแรก
+- ระบบต้องสามารถทำการ Save Draft บันทึกไว้ในระบบหลังบ้านได้ผ่าน API
+- การ Save Draft ไม่จำเป็นต้องกรอกครบทุกช่องให้ครบถึงจะ Save Draft ได้
+- การกดเพื่อไปขั้นตอนต่อไป จะต้องมีการ Validate Form ให้ครบถ้วนเสมอ
+- ในหน้าสุดท้าย จะมีขั้นตอนของการตรวจสอบข้อมูล ก่อนส่งใบสมัคร โดยต้องมีการแสดงข้อมูลทั้งหมดที่กรอกมา เพื่อตรวจสอบว่ามีข้อมูลอะไรผิดพลาดหรือไม่ และสามารถกดแก้ไขเพื่อกลับไปแก้ไขได้
+- Assume ได้ว่าระบบนี้มี API หลังบ้านเรียบร้อยแล้วสำหรับทุก Action ที่ต้องส่งข้อมูลไปหาหลังบ้าน ไม่ต้อง Implement เอง
 
-4. Consider this React's components tree
+**สิ่งที่ต้องส่งมาเป็นคำตอบ**
+- Folder Structure ที่จะใช้ในการจัดวาง
+- Library ที่คาดว่าจะใช้สำหรับ Project นี้ พร้อมทั้งระบุด้วยว่าทำไมถึงเลือกใช้ เช่น ใช้ lodash สำหรับการจัดการข้อมูล
+- จะต้องจัดการ State ของข้อมูลอย่างไร เพื่อรองรับกับโจทย์นี้ได้
+- จะใช้วิธีใดในการ Validate Form สำหรับการ Save Draft และสำหรับการ Submit
+- สามารถตอบเป็นภาษาไทยได้
 
-```
-Apps > ComponentA > ComponentB > ComponentC > ComponentD > ComponentE
-```
+[English Version]
 
-If we have a state at `Apps` component, and `ComponentE` component want to access that state value. How do you implements this?
+We need you to help our CTO of Orange Cap who is super passionate about running and  we are going to organise the event under "Orange Cap Marathon 2021." Of course! If you saw this message, you are chosen! Your mission is to design an architecture for Front-end web apps by React on the registration page for our applicants. 
 
-5. What different between using `relative` / `absolute` / `fixed` to position the element.
+**Requirements and Details :**
 
-6. Explain the different between using `callback` / `Promise` / `async await`. When to use and when not to.
+- You can set ONLY 1 running distance
+- The applicant can apply ONLY one person/time. (Grouping registration is not required)
+- For the application form, all details must be included as following :
+  - Personal Information
+    - Title of name 
+    - First name (TH-EN)
+    - Last name (TH-EN)
+    - Birthdate
+    - Email 
+    - ID card no. 
+    - Address
+    - Contact 
+    - Recent photo (Straight face)
+      - Minimum 300x300 pixel with Square resolution
+    - Name of registered applicant on BIB 
+      - Length of name: maximum 10 characters (use ONLY Capital letter and number)
+  - Applicant background
+    - Have you previously run a Mini Marathon/ Half Marathon / Full Marathon?
+    - What time do you expect to complete your goal in this event? (Hour/Minute)
+  - Emergency contact 
+    - Contact 1 
+      - Name - Surname 
+      - Relationship
+      - Telephone number
+    - Contact 2 
+      - Name - Surname 
+      - Relationship
+      - Telephone number
+  - Medical information 
+    - Blood type 
+      - A / B / O / AB
+    - Do you have a medical allergy? 
+      - If yes, please fill out the detail
+    - Do you have any chronic health? 
+      - If yes, please fill out the detail
+    - Have you had surgery before?  
+      - If yes, please fill out the detail
+    - Do you have any plan for having a baby or are you pregnant before joining this event?
+      - If yes, please fill out the detail
+    - Do you have any personal medicine to take? 
+      - If yes, please fill out the detail
+    - Have you ever gotten injured from a Marathon event? 
+      - If yes, please fill out the detail
+    - Do you often exercise? (at least 2-3 times / week)
+    - Have you ever felt chest tightness or easily tired during working out?
+      - If yes, please fill out the detail
+  - Souvenir 
+    - T-shirt 
+      - Size XS / S / M / L / XL / XXL / XXXL
+- The register form is divided by the following topics. It is a large form. Don’t forget that the applicant cannot complete the form at one time. 
+- The system must be able to save drafts in Back-end via API.
+- To save draft is not necessary to fill out all the blanks.
+- To press “Next” step needs to be a validated form completely.
+- The last page must appear with all the information for reviewing and the user can get back to the page to edit their form.
+- It can be assumed that your system includes a totally API in every step to back-end without implementing.
+
+**Please send the answer as follows :**
+- Folder structure for project
+- List all of libraries use for this project and tell me why you use it. Ex. Use lodash for data management.
+- Tell me how to manage the data state in this project.
+- Tell me the process you use to validate the form for saving draft and submitting the application form.
 
 ## Back-End
+
+### Coding Task
 
 You are going to made a simple **Thai's joke API**. And this API is follow to REST API pattern.
 
@@ -157,26 +275,135 @@ Thai's joke API can allow user to explore, add, delete, like or dislike Thai's j
 ### Bonus
 - If you implemented simple authentication with username and password, and also allow logged-in user to create or delete the joke. You will get a bonus for this task.
 
-### Back-end Questions
+### Back-end Architecture Design Task
 
-1. Explain First-party cookie & Third-party cookie
+[Thai Version]
 
-2. Explain CAP Theorem.
+เนื่องจาก CTO ของ Orange Cap Innovative ชอบวิ่งมาก (แบบมากๆ) ทีมเราเลยตัดสินใจจัดงานแข่งวิ่ง Marathon ในชื่อ "Orange Cap Marathon 2021" งานของคุณคือต้องออกแบบ Architecture สำหรับเว็บไซต์ในส่วนของ REST API Back-end โดยระบบที่ได้รับมอบหมายจะเป็นในส่วนของการลงทะเบียนนักวิ่งที่จะเข้ามาสมัครวิ่งในงาน
 
-3. Considering two queries
+**Requirements และรายละเอียดของระบบ**
+- งานวิ่งนี้มีแค่ระยะเดียวเท่านั้น
+- การสมัครงานวิ่งนี้สมัครได้แค่ทีละคน ไม่มีการสมัครเป็นกลุ่มหลายคนให้
+- ระบบต้องสามารถจัดเก็บข้อมูลทั้งหมดเหล่านี้ได้ครบถ้วนดังต่อไปนี้
+  - ข้อมูลส่วนตัว
+    - คำนำหน้าชื่อ
+    - ชื่อ (ภาษาไทย และอังกฤษ)
+    - นามสกุล (ภาษาไทย และอังกฤษ)
+    - วันเดือนปีเกิด
+    - อีเมล
+    - เลขบัตรประจำตัวประชาชน
+    - ที่อยู่
+    - เบอร์โทรศัพท์
+    - รูปถ่ายหน้าตรง
+      - ความละเอียดขั้นต่ำ 300x300 pixel บังคับเป็น Square Resolution
+    - ชื่อบนเบอร์วิ่ง (BIB)
+      - กำหนดให้กรอกได้สูงสุด 10 ตัวอักษร ภาษาอังกฤษตัวพิมพ์ใหญ่ และตัวเลขเท่านั้น
+  - ข้อมูลเกี่ยวกับการวิ่ง
+    - เคยลงงานแข่ง Mini Marathon / Half Marathon / Full Marathon มาก่อนหรือไม่
+    - เวลาที่คาดว่าจะจบในการวิ่งครั้งนี้ (ชั่วโมงและนาที)
+  - ผู้ติดต่อฉุกเฉิน
+    - ผู้ติดต่อฉุกเฉินคนที่ 1
+      - ชื่อ-นามสกุล
+      - ความสัมพันธ์
+      - เบอร์โทรศัพท์
+    - ผู้ติดต่อฉุกเฉินคนที่ 2
+      - ชื่อ-นามสกุล
+      - ความสัมพันธ์
+      - เบอร์โทรศัพท์
+  - ข้อมูลทางการแพทย์
+    - หมู่เลือด
+      - A / B / O / AB
+    - ท่านมีอาการแพ้ยาหรือสารต่างๆ หรือไม่
+      - หากตอบว่ามี ให้ระบุ
+    - ท่านมีโรคประจำตัว หรือไม่ 
+      - หากตอบว่ามี ให้ระบุ
+    - ท่านมีประวัติการผ่าตัด มาก่อนหรือไม่
+      - หากตอบว่ามี ให้ระบุตำแหน่งและปีที่รับการผ่าตัด
+    - ท่านมีแพลนที่จะมีบุตร หรือ กำลังตั้งครรภ์ก่อนถึงช่วงการแข่งขันหรือไม่
+    - ท่านมียาที่ต้องทานเป็นประจำหรือไม่
+      - หากตอบว่ามี ให้ระบุ
+    - ท่านเคยบาดเจ็บ/ เจ็บป่วย จากการเข้าร่วมงานวิ่ง ที่ต้องไปรักษาต่อที่โรงพยาบาลหรือไม่
+    - ท่านออกกำลังกายสม่ำเสมอหรือไม่ (อย่างน้อย 1-2 ครั้ง ต่อสัปดาห์)
+    - ท่านเคยมีอาการเจ็บแน่นหน้าอก ใจสั่น เหนื่อยง่ายผิดปกติ หน้ามืด ขณะออกกำลังกายหรือไม่?
+  - เสื้อของที่ระลึก
+    - ไซส์เสื้อ
+      - XS / S / M / L / XL / XXL / XXXL
+- Front-end จะมีการแบ่ง Form ออกเป็น 5 Step ตามหัวข้อของคำถาม เนื่องจากฟอร์มใหญ่มาก User ไม่สามารถกรอกครบตามกำหนดได้ในครั้งแรก
+- Back-end จึงต้องมี API สำหรับการรองรับการ Save Draft เพื่อให้ Front-end ทำการ Save Draft ได้
+- การกดเพื่อไปขั้นตอนต่อไป จะต้องมีการ Validate Form ให้ครบถ้วนเสมอ
+- ในหน้าสุดท้าย Front-end จะมีหน้าแสดงข้อมูลทั้งหมดที่กรอกมา เพื่อให้ตรวจสอบข้อมูล ก่อนส่งใบสมัคร Back-end จึงต้องมี API สำหรับการ Submit ในขั้นตอนสุดท้าย ที่จะตรวจสอบข้อมูลว่ากรอกมาครบถ้วนหรือไม่
+ใบสมัครที่ส่งไปแล้ว จะไม่สามารถแก้ไขได้อีก
 
-```javascript
-const searchIds = ['1', '2', '3', ...];
+**สิ่งที่ต้องส่งมาเป็นคำตอบ**
+- Database Schema มีหน้าตาอย่างไร
+- จะใช้วิธีใดในการทำ Authentication
+- ต้องมี REST API Endpoint และ Method อะไรบ้าง (ไม่นับส่วนของการ Login / Register) ในกรณีที่ Endpoint ไหนมีการส่ง Body ต้องระบุ Body มาด้วยว่าต้องมีอะไรบ้าง (ไม่จำเป็นต้องละเอียด ในกรณีที่ field เยอะมากๆ)
+ใน API สำหรับการ Submit ส่งใบสมัคร ควรทำอะไรบ้างในขั้นตอนดังกล่าว สามารถเขียนเป็น Pseudo Code ได้
+- สามารถตอบเป็นภาษาไทยได้
 
-const query1 = await Product.find({ id: { $in: searchIds } });
+[English Version]
+We need you to help our CTO of Orange Cap who is super passionate about running and  we are going to organise the event under "Orange Cap Marathon 2021." Of course! If you saw this message, you are chosen! Your mission is to design an architecture for Front-end web apps by React on the registration page for our applicants. 
 
-const query2 = await Promise.all(searchIds.map(searchId => Product.find({ id: searchId })));
-```
+**Requirements and Details:**
 
-Which one is faster.
+- You can set ONLY 1 running distance
+- The applicant can apply ONLY one person/time. (Grouping registration is not required)
+- For the application form, all details must be included as following :
+  - Personal Information
+    - Title of name 
+    - First name (TH-EN)
+    - Last name (TH-EN)
+    - Birthdate
+    - Email 
+    - ID card no. 
+    - Address
+    - Contact 
+    - Recent photo (Straight face)
+      - Minimum 300x300 pixel with Square resolution
+    - Name of registered applicant on BIB 
+      - Length of name: maximum 10 characters (use ONLY Capital letter and number)
+  - Applicant background
+    - Have you previously run a Mini Marathon/ Half Marathon / Full Marathon?
+    - What time do you expect to complete your goal in this event? (Hour/Minute)
+  - Emergency contact 
+    - Contact 1 
+      - Name - Surname 
+      - Relationship
+      - Telephone number
+    - Contact 2 
+      - Name - Surname 
+      - Relationship
+      - Telephone number
+  - Medical information 
+    - Blood type 
+      - A / B / O / AB
+    - Do you have a medical allergy? 
+      - If yes, please fill out the detail
+    - Do you have any chronic health? 
+      - If yes, please fill out the detail
+    - Have you had surgery before?  
+      - If yes, please fill out the detail
+    - Do you have any plan for having a baby or are you pregnant before joining this event?
+      - If yes, please fill out the detail
+    - Do you have any personal medicine to take? 
+      - If yes, please fill out the detail
+    - Have you ever gotten injured from a Marathon event? 
+      - If yes, please fill out the detail
+    - Do you often exercise? (at least 2-3 times / week)
+    - Have you ever felt chest tightness or easily tired during working out?
+      - If yes, please fill out the detail
+  - Souvenir 
+    - T-shirt 
+      - Size XS / S / M / L / XL / XXL / XXXL
+- On the Front-end, the register form will be divided into 5 steps as the question. It is a large form. Don’t forget that the applicant cannot complete the form at one time. 
+- Back-end must provide an API to save drafts in the Front-end part. 
+- In order to proceed to next step by click “Next” button the form in that step need to be fully validate.
+- Front-end page will appear with all the filled out details before submitting the application form. Back-end  must have an API to completely submit the form in the final step.
+- If the applicant already sent the form, it cannot be edited any more.
 
-4. Explain XSS / SQL Injection / Man in the Middle Attack, and how to prevent each attack type.
-
-5. Explain the different between using `callback` / `Promise` / `async await`. When to use and when not to.
-
-6. Explain how HTTP protocol works.
+**Please send the answer as follows:**
+- Design database schema.
+- Explain how to perform authentication for some API endpoint that need to authenticate first.
+- List all REST API Endpoint for this system, some endpoint may have a request body so please specify what contains inside the body (you don't need to explain full body form, explain only important field).
+- For application form submission endpoint. Explain step by step or Pseudo Code on how to handle form submission.
+- Be able to answer in Thai.

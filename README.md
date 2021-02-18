@@ -1,17 +1,17 @@
-# TakeMeTour's Job Quest 2020 Edition
+# Orange Cap Innovative's Job Quest 2021 Edition
 
-Thank you for your interest in working at TakeMeTour. First, we would like to take a simple test on your coding skill.
+Thank you for your interest in working at Orange Cap Innovative. First, we would like to take a simple test on your coding skill.
 
-Please fork this repo and work on the test. After finishing the test, please send your repo to benz@takemetour.com (Subject: JavaScript Engineer Application). Or you can simply reply an email that we've send you job quest link.
+Please fork this repo and work on the test. After finishing the test, please send your repo to benz@orangecapinnovative.com. Or you can simply reply an email that we've send you job quest link.
 
 This quest has 3 parts
-- **Basic JavaScript/TypeScript + Algorithm** (Any job position **must** do this part)
-- **Front-end** (Only **Front-end** or **Full-stack** position **must** do this part)
-- **Back-end** (Only **Back-end** or **Full-stack** position **must** do this part)
+- **Part A: Basic JavaScript/TypeScript + Algorithm** (Any job position **must** do this part)
+- **Part B: Front-end (Coding + Architecture Design)** (Only **Front-end** or **Full-stack** position **must** do this part)
+- **Part C: Back-end (Coding + Architecture Design)** (Only **Back-end** or **Full-stack** position **must** do this part)
 
 **Note:** Some answers can be answer in Thai language.
 
-## Basic JavaScript/TypeScript + Algorithm
+## Part A: Basic JavaScript/TypeScript + Algorithm
 
 We would like to test your basic knowledge on writing JavaScript or TypeScript, plus we also want to test your algorithm skill a little bit.
 
@@ -97,9 +97,9 @@ Buzz
 FizzBuzz
 ```
 
-## Front-End
+## Part B: Front-End
 
-### Coding Task
+### Part B1: Coding Task
 You are going to make a web application written with **React** which allow users to get some joke from **Chuck Norris**. His joke look like this.
 
 > Chuck Norris once ordered a Big Mac at Burger King, and got one.
@@ -117,7 +117,7 @@ You are going to make a web application written with **React** which allow users
 #### Bonus
 - You can surprise me with any extra features from my requirement. Use your imagination!
 
-### Front-end Architecture Design Task
+### Part B2: Architecture Design Task
 
 [Thai Version]
 
@@ -252,9 +252,9 @@ We need you to help our CTO of Orange Cap who is super passionate about running 
 - Tell me how to manage the data state in this project.
 - Tell me the process you use to validate the form for saving draft and submitting the application form.
 
-## Back-End
+## Part C: Back-End
 
-### Coding Task
+### Part C1: Coding Task
 
 You are going to made a simple **Thai's joke API**. And this API is follow to REST API pattern.
 
@@ -275,7 +275,7 @@ Thai's joke API can allow user to explore, add, delete, like or dislike Thai's j
 ### Bonus
 - If you implemented simple authentication with username and password, and also allow logged-in user to create or delete the joke. You will get a bonus for this task.
 
-### Back-end Architecture Design Task
+### Part C2: Architecture Design Task
 
 [Thai Version]
 

@@ -1,0 +1,26 @@
+{
+  "name": "job-quest-2020",
+  "version": "1.0.0",
+  "description": "Thank you for your interest in working at TakeMeTour. First, we would like to take a simple test on your coding skill.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dragonbul6/job-quest-2020.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dragonbul6/job-quest-2020/issues"
+  },
+  "homepage": "https://github.com/dragonbul6/job-quest-2020#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.17"
+  }
+}

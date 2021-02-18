@@ -1,14 +1,7 @@
-const { response } = require("express");
 const mongoose = require("mongoose");
 const { options, stringConnection, host } = require("./config");
 const account = require("../app/models/account/model");
 const joke = require("../app/models/joke/model");
-
-const responseItem = {
-  status: null,
-  data: [],
-  message: null,
-};
 
 module.exports = {
   databaseConnection: () => {
@@ -21,10 +14,19 @@ module.exports = {
     });
   },
   responseSkeleton: () => {
-    return responseItem;
+    const response = {
+      status: null,
+      data: [],
+      message: null,
+    };
+    return response;
   },
   checkDuplicate: (req, res, next) => {
-    const response = responseItem;
+    const response = {
+      status: null,
+      data: [],
+      message: null,
+    };
     const body = req.body;
     if (body) {
       response.status = 400;
@@ -75,7 +77,60 @@ module.exports = {
         next();
       });
     } catch (error) {
-      console.log(error);
+      response.status = 500;
+      response.message = error;
+      return res.status(response.status).json(response);
+    }
+  },
+  UserGiven: (req, res) => {
+    const response = {
+      status: null,
+      data: [],
+      message: null,
+    };
+
+    const jokeId = req.params.id;
+    const status = req.status;
+    const { userid } = req.user;
+
+    try {
+      if (status) {
+        response.message = "You must been laughing a lot :D !";
+      } else {
+        response.message = "Maybe It's not bad.. :C";
+      }
+
+      account.findById(userid, (err, result) => {
+        if (err) {
+          response.status = 500;
+          response.message = err;
+          return res.status(response.status).json(response);
+        } else {
+          const action = result.action;
+          const duplicatedId = action.filter((item) => item.jokeId == jokeId);
+          const jokeStatus = { jokeId: jokeId, status: status };
+
+          if (duplicatedId.length > 0) {
+            response.status = 409;
+            response.message = "You already done it!";
+            return res.status(response.status).json(response);
+          } else {
+            action.push(jokeStatus);
+            result.markModified("action");
+            result.save((err) => {
+              if (err) {
+                response.status = 500;
+                response.message = err;
+                return res.status(response.status).json(response);
+              } else {
+                response.status = 200;
+                return res.status(response.status).json(response);
+              }
+            });
+          }
+        }
+      });
+    } catch (error) {
       response.status = 500;
       response.message = error;
       return res.status(response.status).json(response);

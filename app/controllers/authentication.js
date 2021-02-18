@@ -41,4 +41,18 @@ module.exports = {
       }
     });
   },
+  checkToken: (req, res, next) => {
+    const token = req.headers["authorization"];
+    const response = responseSkeleton();
+
+    try {
+      const decoded = jwt.verify(token, key);
+      req.user = { userid: decoded._id, username: decoded.username };
+      next();
+    } catch (error) {
+      response.status = 500;
+      response.message = error;
+      return res.status(response.status).json(response);
+    }
+  },
 };

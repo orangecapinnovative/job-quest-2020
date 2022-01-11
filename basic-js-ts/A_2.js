@@ -2,7 +2,7 @@ function shift(arr, dir, n) {
   for (var i = 0; i < n; i++) {
     if (dir === "left") {
       arr.push(arr.shift());
-    } else {
+    } else if (dir === "right") {
       arr.unshift(arr.pop());
     }
   }

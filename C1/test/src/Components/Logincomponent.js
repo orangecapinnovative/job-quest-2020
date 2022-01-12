@@ -12,7 +12,7 @@ const Login = (props) => {
             <h5 className="card-title">Welcome!!!</h5>
             <input
               type="text"
-              placeholder="username"
+              placeholder="admin"
               className="form-control"
               value={username}
               onChange={(event) => {
@@ -23,7 +23,7 @@ const Login = (props) => {
             <br />
             <input
               type="password"
-              placeholder="password"
+              placeholder="1234"
               className="form-control"
               value={password}
               onChange={(event) => {
